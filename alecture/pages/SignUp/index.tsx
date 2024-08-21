@@ -101,7 +101,8 @@ const SignUp = () => {
               onChange={onChangePasswordCheck}
             />
           </div>
-          {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>}
+          {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>} 
+{/*           mismatchError가 true일 때만 <Error>컴포넌트를 렌더링 */}
           {!nickname && <Error>닉네임을 입력해주세요.</Error>}
           {signUpError && <Error>{signUpError}</Error>}
           {signUpSuccess && <Success>회원가입되었습니다! 로그인해주세요.</Success>}
