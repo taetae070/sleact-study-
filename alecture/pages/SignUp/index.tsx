@@ -13,16 +13,16 @@ const SignUp = () => {
   const [nickname, onChangeNickname] = useInput('');
   const [password, , setPassword] = useInput('');
   const [passwordCheck, , setPasswordCheck] = useInput('');
-  const [mismatchError, setMismatchError] = useState(false);
+  const [mismatchError, setMismatchError] = useState(false); //비번일치:false  비번불일치:true
   const [signUpError, setSignUpError] = useState('');
   const [signUpSuccess, setSignUpSuccess] = useState(false);
 
   const onChangePassword = useCallback(
     (e) => {
       setPassword(e.target.value);
-      setMismatchError(e.target.value !== passwordCheck);
+      setMismatchError(e.target.value !== passwordCheck); //비번불일치하면
     },
-    [passwordCheck],
+    [passwordCheck], //passwordCheck 값이 달라지면 onChangePassword실행
   );
 
   const onChangePasswordCheck = useCallback(
