@@ -14,7 +14,7 @@ const SignUp = () => {
   const [password, , setPassword] = useInput('');
   const [passwordCheck, , setPasswordCheck] = useInput('');
   const [mismatchError, setMismatchError] = useState(false); //비번일치:false  비번불일치:true
-  const [signUpError, setSignUpError] = useState('');
+  const [signUpError, setSignUpError] = useState(''); //서버에서 보낸 에러메세지 뜨게하기
   const [signUpSuccess, setSignUpSuccess] = useState(false);
 
   const onChangePassword = useCallback(
