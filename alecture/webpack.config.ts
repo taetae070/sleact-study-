@@ -80,6 +80,8 @@ const config: Configuration = {
     port: 3090,
     devMiddleware: { publicPath: '/dist/' },
     static: { directory: path.resolve(__dirname) },
+
+    //프론트가 서버문제 해결하는 방법 : 프론트에서 API로 보내는 요청을 target주소로 바꿔서 보내겠다는 뜻)
     proxy: {
       '/api/': {
         target: 'http://localhost:3095',
