@@ -53,8 +53,8 @@ const SignUp = () => {
           })
           //실패하면 실행
           .catch((error) => {
-            console.log(error.response); //에러내용확인
-            setSignUpError(error.response.data);
+            console.log(error.response); 
+            setSignUpError(error.response.data); //'정확한' 에러내용확인 : "이미 사용중인 아이디입니다" = error.response.data
           })
           //성공실패상관없이 무조건 실행
           .finally(() => {});
