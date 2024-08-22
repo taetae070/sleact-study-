@@ -38,6 +38,8 @@ const SignUp = () => {
       e.preventDefault();
       if (!mismatchError && nickname) {
         console.log('서버로 회원가입하기');
+
+        //비동기 요청할 때 useState는 초기화해주기
         setSignUpError('');
         setSignUpSuccess(false);
         axios //서버로 보내기: .post( '주소' , {보낼데이터} )
