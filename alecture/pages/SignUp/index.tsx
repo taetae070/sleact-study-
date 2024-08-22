@@ -40,20 +40,23 @@ const SignUp = () => {
         console.log('서버로 회원가입하기');
         setSignUpError('');
         setSignUpSuccess(false);
-        axios
-          .post('/api/users', {
+        axios //서버로 보내기: .post( '주소' , {보낼데이터} )
+          .post('/api/users',{
             email,
             nickname,
             password,
           })
+          //성공하면 실행
           .then((response) => {
             console.log(response);
             setSignUpSuccess(true);
           })
+          //실패하면 실행
           .catch((error) => {
-            console.log(error.response);
+            console.log(error.response); //에러내용확인
             setSignUpError(error.response.data);
           })
+          //성공실패상관없이 무조건 실행
           .finally(() => {});
       }
     },
