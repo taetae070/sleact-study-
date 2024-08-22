@@ -81,10 +81,15 @@ const config: Configuration = {
     devMiddleware: { publicPath: '/dist/' },
     static: { directory: path.resolve(__dirname) },
 
-    //프론트가 서버문제 해결하는 방법 : 프론트에서 API로 보내는 요청을 target주소로 바꿔서 보내겠다는 뜻)
+    //프론트 차원 서버문제 해결방법 proxy: 프론트에서 API로 보내는 요청을 target주소로 바꿔서 보내겠다는 뜻)
     proxy: {
       '/api/': {
-        target: 'http://localhost:3095',
+        target: 'http://localhost:3095', 
+        /*
+        api로 시작하는 모든 요청이 로컬 호스트의 포트 3090으로 보내질 때, 
+        이 요청을 프록시 서버가 받아서 자동으로 http://localhost:3095/api/로 변경하여 백엔드 서버로 보내줍니다.
+        --> api로 시작하는 모든 요청은 실제로는 http://localhost:3095에서 처리되는 것처럼 작동하게 된다.
+        */
         changeOrigin: true,
       },
     },
