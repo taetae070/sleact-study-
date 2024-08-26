@@ -1,6 +1,6 @@
 import useInput from '@hooks/useInput';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from '@pages/SignUp/styles';
-import fetcher from '@utils/fetcher';
+import fetcher from '@utils/fetcher'; //fetch: 데이터를 외부의 서버에서 요청하고 받아오는 과정
 import axios from 'axios';
 import React, { useCallback, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
