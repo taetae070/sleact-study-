@@ -1,9 +1,15 @@
 import useInput from '@hooks/useInput';
-import fetcher from '@utils/fetcher';
+import fetcher from '@utils/fetcher'; //데이터를 가져오는 함수
 import React, { useCallback, useState, VFC } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from './styles';
+/*
+useSWR: 서버로부터 데이터를 가져오고, 이를 캐시하고, 자동으로 revalidation하는 기능을 제공하는 hook
+data: 요청이 성공하면 서버에서 반환된 데이터가 여기에 저장됩니다.
+error: 요청이 실패하면 발생한 오류가 여기에 저장됩니다.
+revalidate: 데이터를 수동으로 다시 가져올 수 있는 함수입니다. 예를 들어, 데이터가 변경된 후 이를 수동으로 갱신하고 싶을 때 사용할 수 있습니다.
+*/
 import { Link, Redirect } from 'react-router-dom';
 
 const SignUp = () => {
@@ -17,6 +23,7 @@ const SignUp = () => {
   const [signUpError, setSignUpError] = useState(''); //서버에서 보낸 에러메세지 뜨게하기
   const [signUpSuccess, setSignUpSuccess] = useState(false);
 
+  //패스워드 입력하면
   const onChangePassword = useCallback(
     (e) => {
       setPassword(e.target.value);
@@ -25,6 +32,7 @@ const SignUp = () => {
     [passwordCheck], 
   );
 
+  //패스워드 체크 입력하면
   const onChangePasswordCheck = useCallback(
     (e) => {
       setPasswordCheck(e.target.value);
@@ -36,11 +44,16 @@ const SignUp = () => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
+      /*
+      !는 negation operator로, 
+      mismatchError의 값이 true라면 false로, mismatchError의 값이 false라면 true로 반전    
+      
+      &&: 둘다 true일 때 실행
+      */
       if (!mismatchError && nickname) {
         console.log('서버로 회원가입하기');
 
-        //비동기 요청할 때 useState는 초기화해주기 
-        //why? 이전 데이터를 지우지 않으면, 사용자는 새 데이터를 기다리는 동안 이전 데이터를 볼 수 있기때문
+        // 초기화: 요청 전에 상태를 초기화하여 사용자에게 이전 요청의 결과가 남아 있지 않도록 함
         setSignUpError('');
         setSignUpSuccess(false);
         axios //서버로 보내기: .post( '주소' , {보낼데이터} )
@@ -49,7 +62,7 @@ const SignUp = () => {
             nickname,
             password,
           })
-          //성공하면 실행
+          //성공하면 실행: 서버가 성공적으로 요청을 처리하면 response 객체가 반환된다. (data, status 등의 속성)
           .then((response) => {
             console.log(response);
             setSignUpSuccess(true);
