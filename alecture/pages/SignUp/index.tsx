@@ -20,9 +20,9 @@ const SignUp = () => {
   const onChangePassword = useCallback(
     (e) => {
       setPassword(e.target.value);
-      setMismatchError(e.target.value !== passwordCheck); //비번불일치하면
+      setMismatchError(e.target.value !== passwordCheck); //비번불일치
     },
-    [passwordCheck], //passwordCheck 값이 달라지면 onChangePassword실행
+    [passwordCheck], 
   );
 
   const onChangePasswordCheck = useCallback(
